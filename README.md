@@ -1,6 +1,6 @@
 # pixi-redux
 
-Basic project using [PixiJS](https://pixijs.io) and [redux-stater-kit](https://redux-starter-kit.js.org).
+Basic project using [PixiJS](https://pixijs.io) and [@reduxjs/toolkit](https://github.com/reduxjs/redux-toolkit).
 
 Inpired by [@marciopuga](https://github.com/marciopuga). Thanks mate.
 
