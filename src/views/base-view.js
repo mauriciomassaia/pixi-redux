@@ -1,5 +1,5 @@
 import { Container } from 'pixi.js'
-import { TweenMax, Power2 } from 'gsap'
+import gsap from 'gsap'
 
 export default class BaseView extends Container {
   constructor (viewName, size) {
@@ -16,9 +16,10 @@ export default class BaseView extends Container {
 
   close () {
     this.emit('close-start')
-    TweenMax.to(this, 0.3, {
+    gsap.to(this, {
+      duration: 0.3,
       alpha: 0,
-      ease: Power2.easeInOut,
+      ease: 'power2.in',
       onComplete: () => this.closeComplete()
     })
   }
@@ -26,10 +27,11 @@ export default class BaseView extends Container {
   open () {
     this.visible = true
     this.emit('open-start')
-    TweenMax.killTweensOf(this)
-    TweenMax.to(this, 0.3, {
+    gsap.killTweensOf(this)
+    gsap.to(this, {
+      duration: 0.3,
       alpha: 1,
-      ease: Power2.easeInOut,
+      ease: 'power2.Out',
       onComplete: () => this.openComplete()
     })
   }

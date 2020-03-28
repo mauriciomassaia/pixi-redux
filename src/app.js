@@ -1,7 +1,6 @@
 import { Application } from 'pixi.js'
 import ViewsContainer from './views/views-container'
 import Menu from './menu/menu'
-import './app.css'
 
 let app
 

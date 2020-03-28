@@ -1,5 +1,5 @@
 import { Container, Text } from 'pixi.js'
-import { TweenMax, Power2 } from 'gsap'
+import gsap from 'gsap'
 import store from '../store'
 import { setView } from '../actions'
 import { getSize, getView } from '../selectors'
@@ -16,7 +16,7 @@ export default class Menu extends Container {
     const labels = ['home', 'hype', 'game', 'end']
     labels.forEach((l, i) => {
       const t = new Text(l, {
-        fontFamily: 'Lucida Grande',
+        fontFamily: 'Arial',
         fontSize: 20,
         fill: 0x000000,
         align: 'center'
@@ -25,7 +25,10 @@ export default class Menu extends Container {
       t.interactive = true
       t.viewName = l
       t.x = i * 80
-      t.on('click', () => store.dispatch(setView({ view: t.viewName })))
+      t.on('click', () => {
+        console.log('click')
+        store.dispatch(setView(t.viewName))
+      })
     })
 
     store.subscribe(() => {
@@ -34,10 +37,11 @@ export default class Menu extends Container {
       const view = getView(state)
       this.children.forEach(c => {
         if (c.viewName === view) {
-          TweenMax.to(r, 0.3, {
+          gsap.to(r, {
+            duration: 0.3,
             width: c.width + 20,
             x: c.x - 10,
-            ease: Power2.easeInOut
+            ease: 'power2.inOut'
           })
         }
       })

@@ -1,7 +1,6 @@
 import { Container } from 'pixi.js'
 import { getSize, getView } from '../selectors'
 import store from '../store'
-
 import EndView from './end/end-view'
 import HomeView from './home/home-view'
 import HypeView from './hype/hype-view'
@@ -18,7 +17,7 @@ export default class ViewsContainer extends Container {
     this.viewsMap = new Map()
 
     this.size = getSize(this.state)
-    const views = [ HomeView, HypeView, GameView, EndView ]
+    const views = [HomeView, HypeView, GameView, EndView]
     views.forEach(View => {
       const v = new View(this.size)
       this.viewsMap.set(v.viewName, v)
@@ -40,8 +39,8 @@ export default class ViewsContainer extends Container {
     if (newView === currentView) return
     // show new view
     clearTimeout(this.timeout)
-    let cur = this.viewsMap.get(currentView)
-    let next = this.viewsMap.get(newView)
+    const cur = this.viewsMap.get(currentView)
+    const next = this.viewsMap.get(newView)
 
     if (next) {
       next.once('open-complete', this.onNextViewOpenComplete, this)
